@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#SheBuildsOnAWS AR Poster Template</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .poster {
+            width: 11in;
+            height: 17in;
+            background: linear-gradient(135deg, #FF6B9D 0%, #4A90E2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1in;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Background Pattern */
+        .poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 2px, transparent 2px),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 2px, transparent 2px),
+                radial-gradient(circle at 40% 60%, rgba(255,255,255,0.05) 3px, transparent 3px);
+            background-size: 100px 100px, 150px 150px, 200px 200px;
+            z-index: 1;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .header {
+            margin-bottom: 0.5in;
+        }
+        
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 600;
+            opacity: 0.95;
+            margin-bottom: 0.3rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        
+        .ar-section {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 1.5in;
+            margin: 1in 0;
+            border: 3px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .ar-marker-container {
+            background: white;
+            padding: 0.5in;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .ar-marker {
+            width: 3in;
+            height: 3in;
+            background: #000;
+            border: 10px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .instructions {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .sub-instructions {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1in 0;
+        }
+        
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .feature-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.3;
+        }
+        
+        .qr-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .qr-code {
+            width: 1.5in;
+            height: 1.5in;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #333;
+            text-align: center;
+            padding: 0.2in;
+        }
+        
+        .qr-text {
+            flex: 1;
+        }
+        
+        .qr-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .qr-url {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-family: monospace;
+            background: rgba(0,0,0,0.2);
+            padding: 0.3rem 0.6rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .aws-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .social-tags {
+            text-align: right;
+        }
+        
+        /* Print Styles */
+        @media print {
+            .poster {
+                width: 11in;
+                height: 17in;
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="content">
+            <!-- Header -->
+            <div class="header">
+                <h1 class="main-title">#SheBuildsOnAWS</h1>
+                <h2 class="subtitle">AR Poster Game</h2>
+                <p class="tagline">Celebrating Women in Cloud Computing</p>
+            </div>
+            
+            <!-- AR Marker Section -->
+            <div class="ar-section">
+                <div class="ar-marker-container">
+                    <div class="ar-marker">
+                        HIRO MARKER
+                        <br>
+                        <small style="font-size: 0.5em;">Replace with actual AR marker image</small>
+                    </div>
+                </div>
+                <div class="instructions">📱 Point your camera at the marker above</div>
+                <div class="sub-instructions">
+                    Watch as the poster comes alive with an interactive<br>
+                    AR experience featuring AWS services and a superhero avatar!
+                </div>
+            </div>
+            
+            <!-- Game Features -->
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🎮</div>
+                    <div class="feature-title">Interactive Quiz</div>
+                    <div class="feature-desc">Test your AWS knowledge with fun questions</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🦸‍♀️</div>
+                    <div class="feature-title">Superhero Avatar</div>
+                    <div class="feature-desc">Meet your Women in Tech guide</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-title">Cloud Builder Badge</div>
+                    <div class="feature-desc">Earn your achievement and take a selfie!</div>
+                </div>
+            </div>
+            
+            <!-- QR Code Section -->
+            <div class="qr-section">
+                <div class="qr-code">
+                    QR CODE
+                    <br>
+                    <small>Replace with actual QR code linking to your deployed app</small>
+                </div>
+                <div class="qr-text">
+                    <div class="qr-title">Can't scan the marker?</div>
+                    <div>Visit directly:</div>
+                    <div class="qr-url">your-app-url.amplifyapp.com</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="aws-logo">
+                ☁️ Powered by AWS
+            </div>
+            <div class="social-tags">
+                #SheBuildsOnAWS #WomenInTech #CloudComputing<br>
+                #AWS #WebAR #TechForGood
+            </div>
+        </div>
+    </div>
+</body>
+</html>
